@@ -1,0 +1,19 @@
+static void countLines(String f1)
+{
+    try(BufferedReader read = new BufferedReader(new FileReader(f1))){
+        int ttline=0;
+        int blankline=0;
+        String line;
+        while((line = read.readLine())!= null){
+            ttline++;
+            if(line.trim().isEmpty()){
+                blankline++;
+            }
+        }
+        System.out.println(ttline+" "+ blankline);
+    }
+    catch(Exception e){
+        e.printStackTrace();
+    }
+  
+}
