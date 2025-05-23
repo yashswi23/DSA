@@ -1,0 +1,39 @@
+import java.util.Scanner;
+import java.util.*;
+import java.io.*;
+// Other imports go here
+// Do NOT change the class name
+class Main{
+    
+    public static int countword(String filename){
+        Set<String> uniq = new HashSet<>();
+        try{
+            File file = new File(filename);
+            if(!file.exists()){
+                return 0;
+            }
+            Scanner sc = new Scanner(new File(filename));
+            while(sc.hasNext()){
+                String word = sc.next().toLowerCase().replaceAll("[^a-z]","");
+                 if(!word.isEmpty()){
+                uniq.add(word);
+            }
+            }
+            sc.close();
+           
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+       
+        return uniq.size();
+    }
+    public static void main(String[] args)
+    {
+        // Write your code here
+        Scanner sc = new Scanner(System.in);
+        String filename = sc.next();
+        int count = countword(filename);
+        System.out.print(count);
+    }
+}
