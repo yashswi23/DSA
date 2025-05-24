@@ -1,0 +1,25 @@
+class Result{
+  static int balancedString(String s){
+      Stack<Integer> st= new Stack<>();
+      int n = s.length();
+      for(int i=0;i<n;i++){
+          char ch = s.charAt(i);
+          if(ch == '(' || ch == '{'){
+              st.push(i);
+          }
+          else if(ch == '}' || ch == ')'){
+              if(st.isEmpty()){
+                  return i;
+              }
+              char open = s.charAt(st.peek());
+              if(ch == ')' && open == '(' || ch=='}' && open=='{'){
+                  st.pop();
+              }
+              else{
+                  return i;
+              }
+          }
+      }
+      return st.isEmpty()?-1:s.length();
+  }
+}
