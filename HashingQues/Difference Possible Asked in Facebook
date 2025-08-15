@@ -1,0 +1,17 @@
+//Given an array A of integers and another non negative integer B .Find if there exists 2 indices i and j such that A[i] - A[j] = B and i != j.
+
+public class Solution {
+    // DO NOT MODIFY THE ARGUMENTS WITH "final" PREFIX. IT IS READ ONLY
+    public int diffPossible(final int[] A, int B) {
+        Set<Integer> st = new HashSet<>();
+        
+       
+       for(int num: A){
+           if(st.contains(num-B)|| st.contains(num+B)){
+               return 1;
+           }
+           st.add(num);
+       }
+       return 0;
+    }
+}
