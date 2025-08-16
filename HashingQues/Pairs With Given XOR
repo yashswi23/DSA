@@ -1,0 +1,19 @@
+public class Solution {
+    public int solve(int[] A, int B) {
+        int n = A.length;
+        int count=0;
+        Set<Integer> st = new HashSet<>();
+       for(int num: A){
+           st.add(num);
+       }
+        
+       for(int i=0;i<n;i++){
+           int need = B^A[i];
+           
+           if(st.contains(need)){
+               count++;
+           }
+       }
+       return count/2;
+    }
+}
