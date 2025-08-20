@@ -1,0 +1,49 @@
+public class Solution {
+    // DO NOT MODIFY THE ARGUMENTS WITH "final" PREFIX. IT IS READ ONLY
+    public int[] findSubstring(String A, final String[] B) {
+            
+       List<Integer> res = new ArrayList<>();
+          if (A == null || A.length() == 0 || B == null || B.length == 0) return new int[]{};
+       
+       Map<String, Integer>mp = new HashMap<>();
+       int wordlen = B[0].length();
+       int wordcount = B.length;
+       int totallen = wordlen*wordcount;
+       
+       if(A.length()< totallen) return new int[]{};
+       
+       for(String w: B ){
+           mp.put(w, mp.getOrDefault(w,0)+1);
+       }
+       
+       
+       for(int i=0;i<=A.length()-totallen;i++){
+           Map<String, Integer>seen = new HashMap<>();
+           int j=0;
+           while(j<wordcount){
+               int start = i+j*wordlen;
+               int end = start+wordlen;
+               String word = A.substring(start,end);
+               
+               if(!mp.containsKey(word)) break;
+               
+               seen.put(word,seen.getOrDefault(word,0)+1);
+               
+               if(seen.get(word) > mp.get(word)){
+                   break;
+               }
+               j++;
+           }
+           
+           if(j == wordcount){
+               res.add(i);
+           }
+       }
+       int[] ans = new int[res.size()];
+for (int k = 0; k < res.size(); k++) {
+    ans[k] = res.get(k);
+}
+return ans;
+        
+    }
+}
