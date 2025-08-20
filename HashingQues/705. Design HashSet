@@ -1,0 +1,47 @@
+class MyHashSet {
+    int numBuckets ;
+    List<Integer>[]buck;
+
+    public MyHashSet() {
+       numBuckets = 15;
+       buck= new ArrayList[numBuckets];
+       for(int i=0;i<numBuckets ;i++){
+        buck[i] = new ArrayList<>();
+       }
+        
+    }
+
+    public int getHashVal(int key){
+        return key%numBuckets;
+    }
+    
+    public void add(int key) {
+        int idx = getHashVal(key);
+
+        if(!buck[idx].contains(key)){
+            buck[idx].add(key);
+        }
+        
+    }
+    
+    public void remove(int key) {
+        int idx = getHashVal(key);
+         buck[idx].remove((Integer)key);
+      
+        
+    }
+    
+    public boolean contains(int key) {
+        int idx = getHashVal(key);
+        return buck[idx].contains(key);
+        
+    }
+}
+
+/**
+ * Your MyHashSet object will be instantiated and called as such:
+ * MyHashSet obj = new MyHashSet();
+ * obj.add(key);
+ * obj.remove(key);
+ * boolean param_3 = obj.contains(key);
+ */
