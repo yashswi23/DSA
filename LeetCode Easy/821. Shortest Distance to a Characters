@@ -1,0 +1,30 @@
+class Solution {
+    public int[] shortestToChar(String s, char c) {
+        int n = s.length();
+        int i=0;
+        int j=0;
+        int[] ans = new int[n];
+        int last_c_index=-n;
+
+        while(j<n){
+            if(s.charAt(j)==c){
+                last_c_index = j;
+            }
+           ans[j] = j-last_c_index;
+           j++;
+        }
+
+        j=n-1;
+        last_c_index=2*n;
+
+        while(j>=0){
+            if(s.charAt(j)==c){
+                last_c_index = j;
+                
+            }
+           ans[j] = Math.min(ans[j],last_c_index-j);
+           j--;
+        }
+        return ans;
+    }
+}
