@@ -1,0 +1,37 @@
+class Solution {
+
+    public void generate(List<Integer> numList,int idx, int target, List<List<Integer>> ans, List<Integer> combSum){
+        if(target == 0){
+            ans.add(new ArrayList<>(combSum));
+            return;
+        }
+
+        if(target<0){
+            return;
+        }
+
+        for(int i=idx;i<numList.size();i++){
+            if(i> idx && numList.get(i)== numList.get(i-1)){
+                continue;
+            }
+            if (numList.get(i) > target) break; 
+             combSum.add(numList.get(i));
+             generate(numList,i+1,target-numList.get(i),ans,combSum);
+             combSum.remove(combSum.size()-1);
+        }
+       
+    }
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> numList = new ArrayList<>();
+        List<Integer> combSum = new ArrayList<>();
+
+        for(int num : candidates){
+            numList.add(num);
+        }
+        Collections.sort(numList);
+
+        generate(numList,0,target, ans, combSum);
+        return ans;
+    }
+}
