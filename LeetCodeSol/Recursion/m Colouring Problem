@@ -1,0 +1,43 @@
+class Solution {
+    
+    boolean isSafe(int idx, List<Integer>[] adj, int [] color, int i){
+        for(int neigh: adj[idx]){
+            if(color[neigh] == i) return false;
+        }
+        return true;
+    }
+    
+    boolean solve(int idx, List<Integer>[] adj,int[] color, int n, int m){
+        if(idx== n) return true;
+        
+        for(int i=1;i<=m;i++){
+            if(isSafe(idx,adj,color,i)){
+                color[idx]=i;
+                if(solve(idx+1,adj,color,n,m)== true){
+                    return true;
+                }
+                color[idx]=0;
+            }
+        }
+        return false;
+    }
+    boolean graphColoring(int v, int[][] edges, int m) {
+        // code here
+        List<Integer> [] adj = new ArrayList[v];
+        for(int i=0;i<v;i++){
+            adj[i] = new ArrayList<>();
+        }
+        for(int[] edge: edges){
+            int u = edge[0];
+            int vp = edge[1];
+            
+            adj[u].add(vp);
+            adj[vp].add(u);
+        }
+        
+        int[] color = new int[v];
+        Arrays.fill(color,0);
+        
+        return solve(0,adj,color,v,m);
+    }
+}
