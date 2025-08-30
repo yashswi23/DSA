@@ -1,0 +1,21 @@
+class Solution {
+    public int numberOfMatches(int n) {
+        int totalm=0,matches=0,adv=0;
+       while(n!=1){
+        if(n%2 == 0){
+            matches = n/2;
+            adv = n-matches;
+            n = adv;
+        }
+        else{
+            matches = (n-1)/2;
+            adv = n-matches;
+            n = adv;
+        }
+
+        totalm += matches;
+       }
+
+       return totalm;
+    }
+}
