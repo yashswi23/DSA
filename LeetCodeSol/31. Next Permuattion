@@ -1,0 +1,31 @@
+class Solution {
+    public void nextPermutation(int[] nums) {
+        int n = nums.length;
+        int gola_index=-1;
+
+        for(int i=n-1;i>0;i--){
+            if(nums[i-1]<nums[i]){
+                gola_index=i-1;
+                break;
+            }
+        }
+        if(gola_index!=-1){
+            for(int i=n-1;i>gola_index;i--){
+                if(nums[i]> nums[gola_index]){
+                    int temp = nums[i];
+                    nums[i] = nums[gola_index];
+                    nums[gola_index]=temp;
+                    break;
+                }
+            }
+        }
+        int left = gola_index+1, right = nums.length-1;
+        while(left<=right){
+            int temp =nums[left];
+            nums[left] = nums[right];
+            nums[right] = temp;
+            left++;
+            right--;
+        }
+    }
+}
