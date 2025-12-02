@@ -1,0 +1,26 @@
+ static void solve(int i, int j, int [][] mat){
+        int n = mat.length;
+        int m = mat[0].length;
+        if(i<0 || i>=n || j<0 || j>=m || mat[i][j]==0){
+            return;
+        }  
+        mat[i][j]=0;
+        solve(i+1,j,mat);
+        solve(i,j+1,mat);
+        solve(i-1,j,mat);
+        solve(i,j-1,mat);
+    }
+  static int countIslands(int mat[][], int m, int n){
+      int count=0;
+    // Write your code here
+      for(int i=0;i<m;i++){
+          for(int j=0;j<n;j++){
+              if(mat[i][j]==1){
+                  count++;
+                  solve(i,j,mat);
+              }
+          }
+      }
+      return count;
+  }   
+}
